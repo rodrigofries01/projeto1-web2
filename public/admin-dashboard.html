@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Portfólio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index-logado.html"><i class="bi bi-house"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    </li>
+
+                    <!-- <--- <li class="nav-item">
+                        <a class="nav-link" href="#users"><i class="bi bi-people"></i> Usuários</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="index-logado.html"><i class="bi bi-folder"></i> Projetos</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Seção de Alunos -->
+        <section id="students" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gerenciar Alunos</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newStudentModal">
+                    Novo Aluno
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-table">
+                        <!-- Alunos serão preenchidos dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção de Palavras-chave -->
+        <section id="keywords" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gerenciar Palavras-chave</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newKeywordModal">
+                    Nova Palavra-chave
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Palavra-chave</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keywords-table">
+                        <!-- Palavras-chave serão preenchidas dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Seção de Conhecimentos -->
+        <section id="skills">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Gerenciar Conhecimentos</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newSkillModal">
+                    Novo Conhecimento
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Conhecimento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="skills-table">
+                        <!-- Conhecimentos serão preenchidos dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal de Novo Aluno -->
+    <div class="modal fade" id="newStudentModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Aluno</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newStudentForm">
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="studentName" name="tf_nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="studentEmail" name="tf_email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentPassword" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="studentPassword" name="tf_senha" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="newStudentForm" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Nova Palavra-chave -->
+    <div class="modal fade" id="newKeywordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nova Palavra-chave</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newKeywordForm">
+                        <div class="mb-3">
+                            <label for="keywordName" class="form-label">Palavra-chave</label>
+                            <input type="text" class="form-control" id="keywordName" name="tf_palavrachave" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="newKeywordForm" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Novo Conhecimento -->
+    <div class="modal fade" id="newSkillModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Novo Conhecimento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newSkillForm">
+                        <div class="mb-3">
+                            <label for="skillName" class="form-label">Nome do Conhecimento</label>
+                            <input type="text" class="form-control" id="skillName" name="tf_conhecimento" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="newSkillForm" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cat Easter Egg -->
+    <div class="cat-container">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/admin-dashboard.js"></script>
+</body>
+</html>

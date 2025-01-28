@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página não encontrada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+        }
+
+        .error-container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(45deg, #6c63ff, #ff6b6b);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #6c63ff, #ff6b6b);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.1;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #6c63ff;
+            white-space: nowrap;
+            animation: matrix-fall linear infinite;
+        }
+
+        @keyframes matrix-fall {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .cat-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .cat-container:hover {
+            opacity: 1;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .cat {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .cat-body {
+            width: 40px;
+            height: 40px;
+            background: #6c63ff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-head {
+            width: 30px;
+            height: 27px;
+            background: #6c63ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-ear {
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 12px solid #6c63ff;
+            position: absolute;
+            top: -2px;
+        }
+
+        .cat-ear.left {
+            left: 0;
+            transform: rotate(-30deg);
+        }
+
+        .cat-ear.right {
+            right: 0;
+            transform: rotate(30deg);
+        }
+
+        .cat-eye {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 12px;
+            animation: cat-blink 4s infinite;
+        }
+
+        .cat-eye.left {
+            left: 7px;
+        }
+
+        .cat-eye.right {
+            right: 7px;
+        }
+
+        @keyframes cat-blink {
+
+            0%,
+            45%,
+            55%,
+            100% {
+                height: 6px;
+            }
+
+            50% {
+                height: 1px;
+            }
+        }
+
+        .terminal-window {
+            background: #2d2d2d;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 500px;
+            font-family: monospace;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-button.red {
+            background: #ff5f56;
+        }
+
+        .terminal-button.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-button.green {
+            background: #27c93f;
+        }
+
+        .terminal-content {
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: #00ff00;
+            margin-left: 4px;
+            animation: cursor-blink 1s infinite;
+        }
+
+        @keyframes cursor-blink {
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .terminal-window {
+                margin: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Ops! Bug encontrado!</h2>
+        <p class="error-message">
+            Parece que o projeto que você está procurando foi para outra branch.
+            Que tal voltar para a main?
+        </p>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-button red"></div>
+                <div class="terminal-button yellow"></div>
+                <div class="terminal-button green"></div>
+            </div>
+            <div class="terminal-content">
+                <span style="color: #6c63ff;">></span> git checkout main<br>
+                <span style="color: #ff6b6b;">error:</span> path 'página-atual' not found<br>
+                <span style="color: #6c63ff;">></span> git status<br>
+                On branch 404<br>
+                Nothing to commit, working tree clean<br>
+                <span style="color: #6c63ff;">></span> _<span class="terminal-cursor"></span>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn btn-primary">
+            Voltar para Home
+        </a>
+    </div>
+
+    <div class="cat-container">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Create Matrix rain effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrixBg');
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>[]{}/*-+~';
+            const columnCount = Math.floor(window.innerWidth / 20);
+
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = `${i * 20}px`;
+                column.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+                let columnText = '';
+                for (let j = 0; j < 50; j++) {
+                    columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = columnText;
+
+                matrixBg.appendChild(column);
+            }
+        }
+
+        // Initialize matrix effect
+        createMatrixRain();
+
+        // Recreate matrix effect on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                document.getElementById('matrixBg').innerHTML = '';
+                createMatrixRain();
+            }, 250);
+        });
+        <!-- Footer -->
+        <footer class="footer py-4 fixed-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="mb-0">&copy; 2024 Portfólio UTFPR. Todos os direitos reservados.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-decoration-none me-3">Política de Privacidade</a>
+                        <a href="#" class="text-decoration-none">Termos de Uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer> 
+    </script>
+</body>
+
+</html>

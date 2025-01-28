@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .welcome-section {
+            flex: 1;
+            color: white;
+            padding-right: 2rem;
+        }
+
+        .welcome-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .welcome-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-list i {
+            color: #6c63ff;
+            font-size: 1.25rem;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2d2d2d;
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e1e1e1;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-control:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25);
+        }
+
+        .input-group-text {
+            border-radius: 10px 0 0 10px;
+            border: 2px solid #e1e1e1;
+            border-right: none;
+            background: white;
+        }
+
+        .input-group .form-control {
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 0;
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.8rem;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a52d5;
+            transform: translateY(-2px);
+        }
+
+        .cat-container {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cat-container:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .cat {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .cat-body {
+            width: 40px;
+            height: 40px;
+            background: #4a4a4a;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-head {
+            width: 30px;
+            height: 27px;
+            background: #4a4a4a;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cat-ear {
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 12px solid #4a4a4a;
+            position: absolute;
+            top: -2px;
+        }
+
+        .cat-ear.left {
+            left: 0;
+            transform: rotate(-30deg);
+        }
+
+        .cat-ear.right {
+            right: 0;
+            transform: rotate(30deg);
+        }
+
+        .cat-eye {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 12px;
+        }
+
+        .cat-eye.left {
+            left: 7px;
+        }
+
+        .cat-eye.right {
+            right: 7px;
+        }
+
+        @media (max-width: 992px) {
+            .page-container {
+                flex-direction: column;
+                margin: 2rem;
+                gap: 2rem;
+            }
+
+            .welcome-section {
+                text-align: center;
+                padding-right: 0;
+            }
+
+            .feature-list {
+                display: inline-block;
+                text-align: left;
+            }
+
+            .login-container {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+
+            .login-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="welcome-section">
+            <h1>Bem-vindo ao seu<br>Portfólio Profissional</h1>
+            <p>Showcase seus projetos e habilidades de desenvolvimento de software em um único lugar.</p>
+            <ul class="feature-list">
+                <li>
+                    <i class="bi bi-code-square"></i>
+                    <span>Compartilhe seus projetos de desenvolvimento</span>
+                </li>
+                <li>
+                    <i class="bi bi-graph-up"></i>
+                    <span>Acompanhe seu progresso e evolução</span>
+                </li>
+                <li>
+                    <i class="bi bi-people"></i>
+                    <span>Conecte-se com outros desenvolvedores</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="login-container">
+            <h2 class="login-title">Acesse sua conta</h2>
+            <form action="/auth/login" method="POST" id="loginForm">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="email" name="tf_email" class="form-control" id="floatingInput"
+                            placeholder="name@example.com" required>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" name="tf_senha" class="form-control" placeholder="Senha" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+                <p class="text-center mt-3 mb-0">
+                    <a href="404.html" class="text-decoration-none">Esqueceu sua senha?</a>
+                </p>
+            </form>
+
+            <div class="cat-container">
+                <div class="cat">
+                    <div class="cat-head">
+                        <div class="cat-ear left"></div>
+                        <div class="cat-ear right"></div>
+                        <div class="cat-eye left"></div>
+                        <div class="cat-eye right"></div>
+                    </div>
+                    <div class="cat-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

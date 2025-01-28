@@ -1,0 +1,63 @@
+// Importa a biblioteca pg para conexão com o PostgreSQL
+const { Pool } = require('pg');
+
+// Configura as credenciais para conexão com o banco de dados
+const pool = new Pool({
+  host: 'localhost',
+  port: 8081,
+  database: 'db_web2',
+  user: 'admin',
+  password: 'postgres',
+});
+
+// Executa uma consulta e retorna o resultado
+async function executarSQL(query, params = []) {
+  const client = await pool.connect();
+  try {
+    const resultado = await client.query(query, params);
+    return resultado.rows;
+  } catch (error) {
+    console.error('Erro ao executar a consulta:', error);
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+// Retorna a primeira linha de um resultado de consulta
+async function retornaLinha(query, params = []) {
+  const resultado = await executarSQL(query, params);
+  return resultado[0] || null;
+}
+
+// Verifica se a consulta gerou algum resultado
+async function verificaResultado(query, params = []) {
+  const resultado = await executarSQL(query, params);
+  return resultado.length > 0;
+}
+
+// Função para desconectar o pool quando necessário
+async function desconectar() {
+  await pool.end();
+}
+
+// Exemplo de validação de login
+(async () => {
+  try {
+    const email = 'usuario@exemplo.com'; // Substitua por dados reais
+    const senha = 'senha123'; // Substitua por dados reais
+
+    const query = 'SELECT * FROM usuarios WHERE email = $1 AND senha = $2';
+    const usuario = await retornaLinha(query, [email, senha]);
+
+    if (usuario) {
+      console.log('Login bem-sucedido:', usuario);
+    } else {
+      console.log('Credenciais inválidas.');
+    }
+  } catch (error) {
+    console.error('Erro durante a validação de login:', error);
+  } finally {
+    await desconectar();
+  }
+})();

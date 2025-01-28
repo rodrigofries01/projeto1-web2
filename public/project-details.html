@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Projeto - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .project-header {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+        }
+        .project-title {
+            color: #2d2d2d;
+            margin-bottom: 1rem;
+        }
+        .keyword-badge {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .author-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .project-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .knowledge-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .knowledge-level {
+            width: 100px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin-left: 1rem;
+            overflow: hidden;
+        }
+        .knowledge-level-fill {
+            height: 100%;
+            background: #6c63ff;
+        }
+        .meta-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .meta-info i {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Detalhes do Projeto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index-logado.html"><i class="bi bi-house"></i> Home</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    </li> -->
+
+                    <!-- <--- <li class="nav-item">
+                        <a class="nav-link" href="#users"><i class="bi bi-people"></i> Usuários</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="index-logado.html"><i class="bi bi-folder"></i> Projetos</a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Detalhes do Projeto</a>
+
+            <buttom class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="student-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+    <div class="project-header">
+        <div class="container">
+            <h1 class="project-title" id="projectTitle">Título do Projeto</h1>
+            <div class="meta-info">
+                <span class="me-3"><i class="bi bi-calendar"></i><span id="projectDate">Data de Publicação</span></span>
+                <span><i class="bi bi-eye"></i><span id="projectViews">Visualizações</span></span>
+            </div>
+            <div id="projectKeywords">
+                <!-- Keywords will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="project-content mb-4">
+                    <h4>Resumo</h4>
+                    <p id="projectSummary" class="text-justify">
+                        <!-- Project summary will be added here -->
+                    </p>
+                    
+                    <h4 class="mt-4">Descrição</h4>
+                    <div id="projectDescription">
+                        <!-- Project description will be added here -->
+                    </div>
+
+                    <h4 class="mt-4">Conhecimentos Utilizados</h4>
+                    <div id="projectKnowledge">
+                        <!-- Knowledge items will be added here -->
+                    </div>
+                </div>
+
+                <div class="project-content">
+                    <h4>Links</h4>
+                    <div id="projectLinks" class="list-group list-group-flush">
+                        <!-- Project links will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="author-card">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/80" alt="Author" class="author-avatar" id="authorAvatar">
+                        <h5 class="mb-2" id="authorName">Nome do Autor</h5>
+                        <p class="text-muted mb-3" id="authorTitle">Título do Autor</p>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="#" class="btn btn-outline-primary" id="authorProfile">
+                            <i class="bi bi-person-circle me-2"></i>Ver Perfil
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary" id="authorContact">
+                            <i class="bi bi-envelope me-2"></i>Contato
+                        </a>
+                    </div>
+                </div>
+
+                <div class="author-card mt-4">
+                    <h5>Outros Projetos do Autor</h5>
+                    <div id="authorProjects" class="list-group list-group-flush">
+                        <!-- Other projects will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cat Easter Egg -->
+    <div class="cat-container">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/project-details.js"></script>
+</body>
+</html>

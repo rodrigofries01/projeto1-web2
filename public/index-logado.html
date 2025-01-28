@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio UTFPR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/cat-chat.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f5f5;
+            --text-color: #333;
+            --hover-color: #357abd;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 60vh;
+            background: linear-gradient(135deg, #6c63ff 0%, #3b3663 100%);
+            color: #fff;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='circuit' x='0' y='0' width='200' height='200' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 100h40l10-10h30l10 10h40M70 0v40l10 10v30l-10 10v40' stroke='white' fill='none' stroke-width='2'/%3E%3Ccircle cx='100' cy='100' r='5' fill='white'/%3E%3Ccircle cx='0' cy='100' r='5' fill='white'/%3E%3Ccircle cx='200' cy='100' r='5' fill='white'/%3E%3Ccircle cx='100' cy='0' r='5' fill='white'/%3E%3Ccircle cx='100' cy='200' r='5' fill='white'/%3E%3Cpath d='M150 0v30l-10 10h-30' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M170 200v-30l10-10h20' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M0 30h30l10 10v30' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M200 170h-30l-10-10v-30' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M50 50l10 10h30l10-10' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M150 150l-10-10h-30l-10 10' stroke='white' fill='none' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='3' fill='white'/%3E%3Ccircle cx='150' cy='150' r='3' fill='white'/%3E%3Cpath d='M25 75h25l5-5h20' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M175 125h-25l-5 5h-20' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M75 25v25l5 5v20' stroke='white' fill='none' stroke-width='2'/%3E%3Cpath d='M125 175v-25l-5-5v-20' stroke='white' fill='none' stroke-width='2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23circuit)'/%3E%3C/svg%3E");
+            animation: moveBg 40s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stats-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .stats-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .project-card {
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #666;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .search-section {
+            background-color: var(--secondary-color);
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .filter-button {
+            margin: 5px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .form-control-custom {
+            border-radius: 20px;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+        }
+
+        .form-control-custom:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #6c63ff 0%, #3b3663 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .animated-button {
+            transition: all 0.3s ease;
+        }
+
+        .animated-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Cat Container */
+        .cat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cat-container:hover {
+            transform: scale(1.1);
+        }
+
+        /* Knowledge Report Modal */
+        .modal-custom .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .modal-custom .modal-header {
+            background: linear-gradient(135deg, #6c63ff 0%, #3b3663 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-custom .modal-footer {
+            border-top: none;
+        }
+
+        /* Add Project Button */
+        .add-project-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6c63ff 0%, #3b3663 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .add-project-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar consistente com os dashboards -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Portfólio UTFPR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="student-dashboard.html"><i class="bi bi-speedometer2"></i>
+                            Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student-dashboard.html"><i class="bi bi-folder"></i> Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="bi bi-box-arrow-in-right"></i> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="circuit-bg"></div>
+        <div class="hero-content">
+            <h1>UTFPR</h1>
+            <p>Bem-vindo ao Portfólio de Projetos dos Alunos</p>
+            <div class="hero-buttons">
+                <a href="student-dashboard.html" class="btn btn-primary">Meus Projetos</a>
+                <a href="#projects" class="btn btn-outline-light">Ver Projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Estatísticas -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <i class="bi bi-folder-fill display-4 mb-3"></i>
+                        <h3 class="counter" id="projectCount">0</h3>
+                        <p>Projetos Publicados</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <i class="bi bi-people-fill display-4 mb-3"></i>
+                        <h3 class="counter" id="studentCount">0</h3>
+                        <p>Alunos Ativos</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <i class="bi bi-tags-fill display-4 mb-3"></i>
+                        <h3 class="counter" id="skillCount">0</h3>
+                        <p>Tecnologias Utilizadas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Projetos em Destaque -->
+    <section id="projects" class="projects-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Projetos em Destaque</h2>
+
+            <!-- Filtros -->
+            <div class="filters mb-4">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar projetos...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="skillFilter">
+                            <option value="">Conhecimentos</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="yearFilter">
+                            <option value="">Palavras-chave</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Projetos -->
+            <div class="row g-4" id="projectsGrid">
+                <!-- Projetos serão carregados dinamicamente aqui -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Cat Easter Egg -->
+    <div class="cat-container" onclick="toggleDialog()">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+        </div>
+    </div>
+
+    <!-- Diálogo do Chat -->
+    <div id="catDialog">
+        <div class="dialog-header">
+            <h3><i class="bi bi-chat-dots"></i> Chat com o Robertinho</h3>
+            <button class="close-button" onclick="toggleDialog()">&times;</button>
+        </div>
+        <div class="dialog-content">
+            <div class="chat-container" id="chatContainer"></div>
+        </div>
+        <div class="input-container">
+            <input type="text" class="message-input" id="messageInput" placeholder="Digite sua mensagem..."
+                onkeypress="handleKeyPress(event)">
+            <button class="send-button" onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script>
+        function toggleDialog() {
+            const dialog = document.getElementById('catDialog');
+            dialog.style.display = dialog.style.display === 'none' ? 'block' : 'none';
+            if (dialog.style.display === 'block') {
+                document.getElementById('messageInput').focus();
+            }
+        }
+
+        function addMessage(text, isUser) {
+            const container = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'cat-message'}`;
+            messageDiv.textContent = text;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+
+                // Gato responde após um pequeno delay
+                setTimeout(() => {
+                    addMessage('Miau! 😺', false);
+                }, 500);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Inicializar o diálogo como fechado
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('catDialog').style.display = 'none';
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+    <!-- Cat Easter Egg -->
+    <!-- <div class="cat-container">
+        <div class="cat">
+            <div class="cat-head">
+                <div class="cat-ear left"></div>
+                <div class="cat-ear right"></div>
+                <div class="cat-eye left"></div>
+                <div class="cat-eye right"></div>
+            </div>
+            <div class="cat-body"></div>
+        </div>
+    </div> -->
+
+    <!-- Scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/index.js"></script> -->
+</body>
+
+</html>
