@@ -1,40 +1,44 @@
-//lista os alunos
 const express = require("express");
-const { body, validationResult } = require("express-validator");
 const router = express.Router();
 const adminAuth = require("../middleware/adminAuth");
-const executarSQL = require("../config/db_sequelize").executarSQL;
+const executarSQL = require("../config/db_sequelize");
 
-// Rota para buscar estudantes
-router.get("/addalunos", adminAuth, async (req, res) => {
+// Define your routes here
+router.use(adminAuth);
+
+router.get("/", (req, res) => {
+  res.send("Add Aluno Route");
+});
+
+router.get("/alunos", adminAuth, async (req, res) => {
   try {
-    // Consulta para obter todos os estudantes
-    const query = "SELECT * FROM students WHERE role = $1";
-    const students = await executarSQL(query, ["student"]); // Usando 'student' como parâmetro
+    const query = "SELECT * FROM students";
+    const result = await executarSQL(query);
 
-    // Retorna os estudantes em formato JSON
-    res.json(students);
+    res.status(200).json(result.rows);
   } catch (error) {
-    console.error("Erro ao buscar estudantes:", error);
-    res.status(500).send("Erro ao buscar estudantes");
+    console.error("Erro ao buscar alunos:", error);
+    res.status(500).send("Erro ao buscar alunos");
   }
 });
 
-// Crie um novo usuário
-router.post("/addalunos", adminAuth, async (req, res) => {
+router.post("/addaluno", adminAuth, async (req, res) => {
+  const { nome, email, senha } = req.body;
+
   try {
-    const novoUsuario = await User.create({
-      username,
-      email,
-      senha,
-      is_admin: is_admin || false,
+    const query =
+      "INSERT INTO students (nome, email, senha) VALUES ($1, $2, $3) RETURNING *";
+    const values = [nome, email, senha];
+    const result = await executarSQL(query, values);
+
+    res.status(201).json({
+      message: "Aluno cadastrado com sucesso!",
+      aluno: result.rows[0],
     });
-
-    return res
-      .status(201)
-      .json({ message: "Usuário criado com sucesso !", user: novoUsuario });
   } catch (error) {
-    console.error("Erro ao buscar estudantes:", error);
-    res.status(500).send("Erro ao buscar estudantes");
+    console.error("Erro ao cadastrar aluno:", error);
+    res.status(500).send("Erro ao cadastrar aluno");
   }
 });
+
+module.exports = router;
