@@ -21,6 +21,6 @@ db.User = require("../models/User")(sequelize, DataTypes);
 db.Skill = require("../models/Skill")(sequelize, DataTypes);
 db.Keyword = require("../models/Keyword")(sequelize, DataTypes);
 db.Project = require("../models/Project")(sequelize, DataTypes);
-db.UserSkill = require("../models/Skill")(sequelize, DataTypes);
+db.UserSkill = require("../models/UserSkill")(sequelize, DataTypes);
 
 module.exports = db;

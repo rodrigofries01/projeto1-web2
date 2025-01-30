@@ -1,7 +1,7 @@
 // converta esse codigo, para que troque o mongoose pelo sequelize
 module.exports = (sequelize, DataTypes) => {
   const Keyword = sequelize.define(
-    "Keyword",
+    "keyword",
     {
       name: {
         type: DataTypes.STRING,

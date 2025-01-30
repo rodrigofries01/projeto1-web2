@@ -13,6 +13,7 @@ require("dotenv").config();
 
 app.use("/api", require("./routes/addaluno"));
 app.use(express.json()); // Middleware para parsing de JSON
+app.use("/admin", require("./routes/admin"));
 app.use(express.urlencoded({ extended: true })); // Middleware para parsing de URL-encoded
 
 const verificaloginRoutes = require("./routes/verificalogin");

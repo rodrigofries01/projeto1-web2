@@ -1,30 +1,25 @@
+const express = require("express");
+const router = express.Router();
+const adminAuth = require("../middleware/adminAuth");
+const executarSQL = require("../config/db_sequelize");
 
-// Aluno adiciona um conhecimento no perfil
+router.use(adminAuth);
 
-const express = require('express');
-const cors = require('cors');
-const { executarSQL } = require('./base');  // Importando a função de consulta do base.js
-
-// Criar uma instância do Express
-const app = express();
-const port = 3000;
-
-// Configurar o CORS para permitir solicitações de diferentes origens (frontend)
-app.use(cors());
-
-// Endpoint para obter os conhecimentos
-app.get('/api/skills', async (req, res) => {
-    const query = 'SELECT nome FROM conhecimentos'; // Altere conforme o nome correto da tabela e coluna
-    try {
-        const skills = await executarSQL(query); // Usando a função do base.js para executar a consulta
-        res.json(skills); // Retorna os conhecimentos encontrados
-    } catch (err) {
-        console.error('Erro ao buscar conhecimentos:', err);
-        res.status(500).send('Erro ao buscar conhecimentos');
-    }
+router.get("/", (req, res) => {
+  res.send("Add Conhecimento Route");
 });
 
-// Iniciar o servidor
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+router.post("/addconhecimento", async (req, res) => {
+  const { nome } = req.body;
+  try {
+    const query = "INSERT INTO conhecimentos (nome) VALUES ($1) RETURNING *";
+    const values = [nome];
+    const result = await executarSQL(query, values);
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Erro ao cadastrar conhecimento:", error);
+    res.status(500).send("Erro ao cadastrar conhecimento");
+  }
 });
+
+module.exports = router;
