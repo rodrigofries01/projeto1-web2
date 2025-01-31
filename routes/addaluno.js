@@ -6,7 +6,7 @@ const executarSQL = require("../config/db_sequelize");
 router.use(adminAuth);
 
 router.get("/", (req, res) => {
-  res.send("Add Aluno Route");
+  res.send(adminAuth.name);
 });
 
 router.get("/admin-logado", async (req, res) => {
@@ -21,12 +21,12 @@ router.get("/admin-logado", async (req, res) => {
 });
 
 router.post("/addaluno", async (req, res) => {
-  const { username, email, senha } = req.body;
+  const { tf_nome, tf_email, tf_senha } = req.body;
   try {
     const newUser = await User.create({
-      username,
-      email,
-      senha,
+      tf_nome,
+      tf_email,
+      tf_senha,
       is_admin: false, // Certifique-se de que o aluno não é um administrador
     });
     res.status(201).json(newUser);

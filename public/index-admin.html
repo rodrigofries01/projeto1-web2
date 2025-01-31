@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,6 +44,7 @@
             0% {
                 transform: translate(0, 0) rotate(0deg);
             }
+
             100% {
                 transform: translate(-50%, -50%) rotate(360deg);
             }
@@ -250,18 +252,20 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar consistente com os dashboards -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
-            <a class="navbar-brand" href="#">Portfólio UTFPR</a>
+            <a class="navbar-brand" href="index.html">Portfólio UTFPR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="student-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                        <a class="nav-link active" href="student-dashboard.html"><i class="bi bi-speedometer2"></i>
+                            Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#projects"><i class="bi bi-folder"></i> Projetos</a>
@@ -320,7 +324,7 @@
     <section id="projects" class="projects-section py-5">
         <div class="container">
             <h2 class="text-center mb-5">Projetos em Destaque</h2>
-            
+
             <!-- Filtros -->
             <div class="filters mb-4">
                 <div class="row g-3">
@@ -349,94 +353,8 @@
 
 
 
-<!-- Cat Easter Egg -->
-<div class="cat-container" onclick="toggleDialog()">
-    <div class="cat">
-        <div class="cat-head">
-            <div class="cat-ear left"></div>
-            <div class="cat-ear right"></div>
-            <div class="cat-eye left"></div>
-            <div class="cat-eye right"></div>
-        </div>
-        <div class="cat-body"></div>
-    </div>
-</div>
-
-<!-- Diálogo do Chat -->
-<div id="catDialog">
-    <div class="dialog-header">
-        <h3><i class="bi bi-chat-dots"></i> Chat com o Robertinho</h3>
-        <button class="close-button" onclick="toggleDialog()">&times;</button>
-    </div>
-    <div class="dialog-content">
-        <div class="chat-container" id="chatContainer"></div>
-    </div>
-    <div class="input-container">
-        <input type="text" class="message-input" id="messageInput" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
-        <button class="send-button" onclick="sendMessage()">Enviar</button>
-    </div>
-</div>
-
-
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="js/index.js"></script>
-<script>
-    function toggleDialog() {
-        const dialog = document.getElementById('catDialog');
-        dialog.style.display = dialog.style.display === 'none' ? 'block' : 'none';
-        if (dialog.style.display === 'block') {
-            document.getElementById('messageInput').focus();
-        }
-    }
-
-    function addMessage(text, isUser) {
-        const container = document.getElementById('chatContainer');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${isUser ? 'user-message' : 'cat-message'}`;
-        messageDiv.textContent = text;
-        container.appendChild(messageDiv);
-        container.scrollTop = container.scrollHeight;
-    }
-
-    function sendMessage() {
-        const input = document.getElementById('messageInput');
-        const message = input.value.trim();
-        
-        if (message) {
-            addMessage(message, true);
-            input.value = '';
-            
-            // Gato responde após um pequeno delay
-            setTimeout(() => {
-                addMessage('Miau! 😺', false);
-            }, 500);
-        }
-    }
-
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            sendMessage();
-        }
-    }
-
-    // Inicializar o diálogo como fechado
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('catDialog').style.display = 'none';
-    });
-</script>
-
-
-
-
-
-
-
-
-
     <!-- Cat Easter Egg -->
-    <!-- <div class="cat-container">
+    <div class="cat-container" onclick="toggleDialog()">
         <div class="cat">
             <div class="cat-head">
                 <div class="cat-ear left"></div>
@@ -446,10 +364,73 @@
             </div>
             <div class="cat-body"></div>
         </div>
-    </div> -->
+    </div>
+
+    <!-- Diálogo do Chat -->
+    <div id="catDialog">
+        <div class="dialog-header">
+            <h3><i class="bi bi-chat-dots"></i> Chat com o Robertinho</h3>
+            <button class="close-button" onclick="toggleDialog()">&times;</button>
+        </div>
+        <div class="dialog-content">
+            <div class="chat-container" id="chatContainer"></div>
+        </div>
+        <div class="input-container">
+            <input type="text" class="message-input" id="messageInput" placeholder="Digite sua mensagem..."
+                onkeypress="handleKeyPress(event)">
+            <button class="send-button" onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+
 
     <!-- Scripts -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="js/index.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script>
+        function toggleDialog() {
+            const dialog = document.getElementById('catDialog');
+            dialog.style.display = dialog.style.display === 'none' ? 'block' : 'none';
+            if (dialog.style.display === 'block') {
+                document.getElementById('messageInput').focus();
+            }
+        }
+
+        function addMessage(text, isUser) {
+            const container = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'cat-message'}`;
+            messageDiv.textContent = text;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+
+                // Gato responde após um pequeno delay
+                setTimeout(() => {
+                    addMessage('Miau! 😺', false);
+                }, 500);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Inicializar o diálogo como fechado
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('catDialog').style.display = 'none';
+        });
+    </script>
 </body>
+
 </html>

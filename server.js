@@ -32,7 +32,7 @@ db.sequelize
 
 // Make the pool available to route handlers
 app.use((req, res, next) => {
-  req.pool = pool;
+  req.pool = Pool;
   next();
 });
 

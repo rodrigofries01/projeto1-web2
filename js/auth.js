@@ -1,11 +1,11 @@
 import { apiCall, setAuthToken, showNotification } from "./utils.js";
 
 class Auth {
-  static async login(email, password) {
+  static async login(tf_email, tf_password) {
     try {
       const response = await apiCall("/auth/login", {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ tf_email, tf_password }),
       });
 
       if (response.token) {
