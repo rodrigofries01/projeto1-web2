@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const adminAuth = require("../middleware/adminAuth");
 const executarSQL = require("../config/db_sequelize");
+const User = require("../models/User");
 
 router.use(adminAuth);
 
-router.get("/", (req, res) => {
+router.get("/admin-dashboard", (req, res) => {
   res.send(adminAuth.name);
 });
 
-router.get("/admin-logado", async (req, res) => {
+router.get("/admin-dashboard", async (req, res) => {
   try {
     const query = "SELECT * FROM users";
     const result = await executarSQL(query);
@@ -20,9 +21,11 @@ router.get("/admin-logado", async (req, res) => {
   }
 });
 
-router.post("/addaluno", async (req, res) => {
-  const { tf_nome, tf_email, tf_senha } = req.body;
+router.post("/admin-dashboard", async (req, res) => {
   try {
+    console.log("Request body:", req.body); // Adicione este log para verificar o corpo da requisição
+
+    const { tf_nome, tf_email, tf_senha } = req.body;
     const newUser = await User.create({
       tf_nome,
       tf_email,

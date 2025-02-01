@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("user", {
-    username: {
+    tf_name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    email: {
+    tf_email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    senha: {
+    tf_senha: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,

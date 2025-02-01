@@ -17,7 +17,7 @@ class AdminDashboard {
   // Students Management
   async loadStudents() {
     try {
-      const students = await apiCall("/admin/students");
+      const students = await apiCall("/students");
       const tbody = document.getElementById("students-table");
       tbody.innerHTML = students
         .map(
@@ -40,7 +40,7 @@ class AdminDashboard {
 
   async handleNewStudent(formData) {
     try {
-      await apiCall("/addaluno", {
+      await apiCall("/students", {
         method: "POST",
         body: JSON.stringify(formData),
       });

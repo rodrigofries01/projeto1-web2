@@ -8,7 +8,7 @@ const Keyword = require("../models/Keyword");
 const { adminAuth } = require("../middleware/auth");
 
 // Student Management
-router.get("/admin-dashboard", adminAuth, async (req, res) => {
+router.get("/students", adminAuth, async (req, res) => {
   try {
     const students = await User.findAll({
       where: { is_admin: false },
@@ -21,7 +21,7 @@ router.get("/admin-dashboard", adminAuth, async (req, res) => {
   }
 });
 
-router.post("/admin-dashboard", adminAuth, async (req, res) => {
+router.post("/", adminAuth, async (req, res) => {
   try {
     const user = new User({
       ...req.body,

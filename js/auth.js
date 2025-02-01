@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const tf_email = document.getElementById("tf_email").value;
+      const tf_password = document.getElementById("tf_password").value;
       try {
-        await Auth.login(email, password);
+        await Auth.login(tf_email, tf_password);
       } catch (error) {
         console.error("Login error:", error);
       }

@@ -3,8 +3,8 @@ const router = express.Router();
 const { User } = require("../models"); // Certifique-se de que o caminho está correto
 
 // Função para executar a consulta no banco de dados usando Sequelize
-async function retornaLinha(email, senha) {
-  return await User.findOne({ where: { email, senha } });
+async function retornaLinha(tf_email, tf_senha) {
+  return await User.findOne({ where: { tf_email, tf_senha } });
 }
 
 router.post("/login", async (req, res) => {
