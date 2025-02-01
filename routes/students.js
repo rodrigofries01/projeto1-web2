@@ -2,15 +2,14 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models");
 const adminAuth = require("../middleware/adminAuth");
+const executarSQL = require("../config/db_sequelize");
 
 // Obter todos os alunos
 router.get("/", adminAuth, async (req, res) => {
   try {
-    const students = await User.findAll({
-      where: { is_admin: false },
-      attributes: { exclude: ["senha"] },
-    });
-    res.json(students);
+    const query = "SELECT tf_nome, tf_email FROM users WHERE is_admin = false";
+    const result = await executarSQL(query);
+    res.json(result.rows);
   } catch (error) {
     console.error("Error fetching students:", error);
     res.status(500).json({ message: "Error fetching students" });
@@ -28,8 +27,11 @@ router.post("/", adminAuth, async (req, res) => {
       tf_senha,
       is_admin: false, // Certifique-se de que o aluno não é um administrador
     });
-
-    res.status(201).json({ ...newUser.toJSON(), senha: undefined });
+    const query =
+      "INSERT INTO users (tf_nome, tf_email, tf_senha) VALUES ($1, $2, $3) RETURNING *";
+    const values = [newUser];
+    const result = await executarSQL(query, values);
+    res.status(201).json(result.rows[0]);
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       return res.status(400).json({ message: "Email already exists" });

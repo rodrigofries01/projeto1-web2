@@ -32,7 +32,9 @@ router.post("/admin-dashboard", async (req, res) => {
       tf_senha,
       is_admin: false, // Certifique-se de que o aluno não é um administrador
     });
-    res.status(201).json(newUser);
+    const query =
+      "INSERT INTO projetos (tf_nome, tf_email, tf_senha) VALUES ($1, $2, $3) RETURNING *";
+    res.status(201).json(query);
   } catch (error) {
     console.error("Erro ao cadastrar aluno:", error);
     res.status(500).send("Erro ao cadastrar aluno");
