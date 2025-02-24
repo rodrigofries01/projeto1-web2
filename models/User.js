@@ -1,34 +1,30 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("user", {
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const UserSchema = new mongoose.Schema(
+  {
     tf_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
       unique: true,
     },
     tf_email: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
       unique: true,
     },
     tf_senha: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: String,
+      required: true,
     },
     is_admin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      type: Boolean,
+      default: false,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-  });
+  },
+  {
+    timestamps: true,
+  }
+);
 
-  return User;
-};
+module.exports = mongoose.model("usuarios", UserSchema);

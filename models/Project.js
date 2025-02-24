@@ -1,30 +1,30 @@
-module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define(
-    "project",
-    {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      startDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      endDate: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-    },
-    {
-      // Outras opções do modelo (opcional)
-      tableName: "projects", // Nome da tabela no banco de dados
-      timestamps: true, // Cria colunas createdAt e updatedAt automaticamente
-    }
-  );
+const mongoose = require("mongoose");
 
-  return Project;
-};
+const projectSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: false,
+    },
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+      required: false,
+    },
+  },
+  {
+    collection: "projects", // Nome da coleção no banco de dados
+    timestamps: true, // Cria campos createdAt e updatedAt automaticamente
+  }
+);
+
+const Project = mongoose.model("Project", projectSchema);
+
+module.exports = Project;

@@ -1,36 +1,30 @@
-module.exports = (sequelize, DataTypes) => {
-  const UserSkill = sequelize.define(
-    "userSkill",
-    {
-      userId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "users", // Nome da tabela de usuários
-          key: "id",
-        },
-        allowNull: false,
-      },
-      skillId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "skills", // Nome da tabela de habilidades
-          key: "id",
-        },
-        allowNull: false,
-      },
-      level: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          min: 0,
-          max: 10,
-        },
-      },
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
+const UserSkillSchema = new Schema(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User", // Nome do modelo de usuários
+      required: true,
     },
-    {
-      timestamps: true, // Adiciona colunas createdAt e updatedAt
-      tableName: "user_skills", // Nome da tabela no banco de dados
-    }
-  );
-  return UserSkill;
-};
+    skillId: {
+      type: Schema.Types.ObjectId,
+      ref: "Skill", // Nome do modelo de habilidades
+      required: true,
+    },
+    level: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 10,
+    },
+  },
+  {
+    timestamps: true, // Adiciona colunas createdAt e updatedAt
+    collection: "user_skills", // Nome da coleção no banco de dados
+  }
+);
+
+module.exports = mongoose.model("UserSkill", UserSkillSchema);

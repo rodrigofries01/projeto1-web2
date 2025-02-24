@@ -1,14 +1,16 @@
-module.exports = (sequelize, DataTypes) => {
-  const Skill = sequelize.define("skill", {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    proficiency: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  });
+const mongoose = require("mongoose");
 
-  return Skill;
-};
+const SkillSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  proficiency: {
+    type: Number,
+    required: true,
+  },
+});
+
+const Skill = mongoose.model("Skill", SkillSchema);
+
+module.exports = Skill;
